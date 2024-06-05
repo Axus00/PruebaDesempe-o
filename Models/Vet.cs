@@ -16,6 +16,8 @@ namespace Veterinaria.Models
         [Required]
         [Phone]
         public string Phone { get; set; }
+
+        public string ExperienceYear { get; set; }
         
         [Required]
         public string Address { get; set; }

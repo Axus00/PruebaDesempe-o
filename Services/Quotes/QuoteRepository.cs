@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Veterinaria.Controllers.Mail;
 using Veterinaria.Data;
 using Veterinaria.Models;
 
@@ -21,6 +22,9 @@ namespace Veterinaria.Services.Quotes
         {
             //Call Db
             _context.Quotes.Add(quote);
+            //We send email to owner
+            MailController NewEmail = new MailController();
+            NewEmail.EmailSend();
             //Then we save information
             _context.SaveChanges();
         }

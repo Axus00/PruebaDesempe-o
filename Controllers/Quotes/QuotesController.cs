@@ -73,9 +73,7 @@ namespace Veterinaria.Controllers.Quotes
             {
                 //call interface
                 _quoteRepository.Add(quote);
-                //We send email to owner
-                MailController NewEmail = new MailController();
-                NewEmail.EmailSend();
+                
                 return Ok("The quote has been created.");
             }
             catch (Exception ex)

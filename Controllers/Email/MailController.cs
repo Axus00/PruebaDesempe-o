@@ -60,7 +60,6 @@ namespace Veterinaria.Controllers.Mail
 
         internal void EmailSend()
         {
-            throw new NotImplementedException();
         }
     }
 }

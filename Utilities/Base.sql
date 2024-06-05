@@ -17,13 +17,14 @@ create table Vets(
     Id int not null auto_increment PRIMARY KEY,
     Name varchar(120),
     Phone varchar(25),
+    ExperienceYear varchar(50),
     Address varchar(30),
     Email varchar(100) UNIQUE
 );
 
 --Add Information
-insert into Vets(Name, Phone, Address, Email) values ("Roberto", "3024539876", "calle 30 # 02 B", "roberto@veterinaria.com"),
-("Juan", "3004556677", "calle 30 # 02 B", "juan@veterinaria.com");
+insert into Vets(Name, Phone, ExperienceYear, Address, Email) values ("Roberto", "3024539876", "5 años", "calle 30 # 02 B", "roberto@veterinaria.com"),
+("Juan", "3004556677", "10 años", "calle 30 # 02 B", "juan@veterinaria.com");
 
 -- Table Pets
 create table Pets(
