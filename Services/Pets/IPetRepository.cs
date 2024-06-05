@@ -9,6 +9,8 @@ namespace Veterinaria.Services.Pets
     public interface IPetRepository
     {
         IEnumerable<Pet> GetPets(); //List
+        IEnumerable<Owner> GetPetOwner(int id); //endpoint medium
+        IEnumerable<Pet> GetPetBirth(); //endpoint medium
         Pet GetById(int? id); //ListById
         void Add(Pet pet); //Create or Add
         void Update(int id, Pet pet); //Update

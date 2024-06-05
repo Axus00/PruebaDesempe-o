@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Veterinaria.Controllers.Mail;
+using Veterinaria.Dto;
 using Veterinaria.Models;
 using Veterinaria.Services.Quotes;
+using Veterinaria.Controllers.Mail;
 
 namespace Veterinaria.Controllers.Quotes
 {
@@ -43,6 +46,25 @@ namespace Veterinaria.Controllers.Quotes
             return _quoteRepository.GetById(id);
         }
 
+        //Get quotes of date
+        [HttpGet("{date}/date")]
+        public IEnumerable<Quote> GetQuoteDate()
+        {
+            if(!ModelState.IsValid)
+            {
+                BadRequest("The request isn't possible resolve");
+            }
+            //Call interface 
+            return _quoteRepository.QuotesDate();
+        }
+
+        //Get quote about vet
+        [HttpGet("{id}/vets")]
+        public IEnumerable<Quote> GetQuoteVet(int id)
+        {
+            return _quoteRepository.QuotesVet(id);
+        }
+
         //Create quote
         [HttpPost]
         public IActionResult CreateQuote(Quote quote)
@@ -51,6 +73,9 @@ namespace Veterinaria.Controllers.Quotes
             {
                 //call interface
                 _quoteRepository.Add(quote);
+                //We send email to owner
+                MailController NewEmail = new MailController();
+                NewEmail.EmailSend();
                 return Ok("The quote has been created.");
             }
             catch (Exception ex)

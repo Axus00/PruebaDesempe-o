@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Veterinaria.Data;
 using Veterinaria.Models;
+using System.Linq;
 
 namespace Veterinaria.Services.Pets
 {
@@ -29,6 +30,19 @@ namespace Veterinaria.Services.Pets
         {
             //Call Db
             return _context.Pets.Find(id);
+        }
+
+        public IEnumerable<Pet> GetPetBirth()
+        {
+            //We list all pets with owners with Ur birthday exactly
+            return _context.Pets.Where(p => p.DateBirth.Equals(p.DateBirth)).Include(p => p.Owner).ToList();
+        }
+
+        public IEnumerable<Owner> GetPetOwner(int id)
+        {
+            var PetOwner = _context.Owners.Where(o => o.Id == id).ToList();
+            
+            return PetOwner;
         }
 
         public IEnumerable<Pet> GetPets()

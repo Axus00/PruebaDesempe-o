@@ -65,6 +65,25 @@ namespace Veterinaria.Controllers.Pets
             }
         }
 
+        [HttpGet("{id}/owner")]
+        public IEnumerable<Owner> GetOwnerPet(int id)
+        {
+            return _petRepository.GetPetOwner(id);
+        }
+
+        //Get pet with brithday
+        [HttpGet("{date}/birthday")]
+        public IEnumerable<Pet> GetPetBirth()
+        {
+            if(!ModelState.IsValid)
+            {
+                NotFound("The resquest isn't valid to response"); 
+            }
+
+            //Call interface on file services
+            return _petRepository.GetPetBirth();
+        }
+
         //Create Pet
         [HttpPost]
         public IActionResult CreatePet(Pet pet)

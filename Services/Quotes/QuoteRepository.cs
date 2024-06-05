@@ -47,5 +47,18 @@ namespace Veterinaria.Services.Quotes
             //Save information in Db
             _context.SaveChanges();
         }
+
+        public IEnumerable<Quote> QuotesDate()
+        {
+            //We list all quote exactly of date
+            return _context.Quotes.Where(q => q.Date.Equals(q.Date)).Include(q => q.Vet).Include(q => q.Pet).ToList();
+            
+        }
+
+        public IEnumerable<Quote> QuotesVet(int id)
+        {
+            //We list all quote about exactly vet
+            return _context.Quotes.Where(q => q.VetId == id).Include(q => q.Pet).ToList();
+        }
     }
 }

@@ -30,7 +30,7 @@ create table Pets(
     Id int not null auto_increment PRIMARY KEY,
     Name varchar(25),
     Specie enum ("Perro", "Gato", "Araña", "Serpiente", "Ave"),
-    Race enum ("Pinscher", "Pitbull", "BorderCollins", "Schnauzer", "Chihuahua"),
+    Race enum ("Pinscher", "Pitbull", "BorderCollins", "Schnauzer", "Chihuahua", "Siemens", "Criollo", "Persa", "Coral", "Boa", "Cascabel", "Turpial"),
     DateBirth DATE,
     OwnerId int,
     Foreign Key (OwnerId) REFERENCES Owners(Id),
